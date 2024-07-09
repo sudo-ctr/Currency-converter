@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #e0f7fa;
+            margin: 0;
+            flex-direction: column;
+        }
+        .converter {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            width: 300px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .converter input, .converter select {
+            margin: 10px 0;
+            padding: 10px;
+            width: calc(100% - 22px);
+            box-sizing: border-box;
+            border: 1px solid #007BFF;
+            border-radius: 5px;
+        }
+        .converter button {
+            padding: 10px;
+            width: 100%;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .converter button:hover {
+            background-color: #0056b3;
+        }
+        .converter h2 {
+            margin-bottom: 20px;
+            color: #007BFF;
+        }
+        .converter h3 {
+            margin-top: 20px;
+            color: #007BFF;
+        }
+        .footer {
+            text-align: center;
+            color: #007BFF;
+            margin-top: 20px;
+        }
+        .footer a {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .footer img {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="converter">
+    <h2>Currency Converter</h2>
+    <label for="amount">Amount:</label>
+    <input type="number" id="amount" placeholder="Enter amount">
+    <label for="fromCurrency">From:</label>
+    <select id="fromCurrency">
+        <optgroup label="International Currencies">
+            <option value="MAD">MAD (Moroccan Dirham)</option>
+            <option value="USD">USD (United States Dollar)</option>
+            <option value="EUR">EUR (Euro)</option>
+            <option value="GBP">GBP (British Pound Sterling)</option>
+            <option value="JPY">JPY (Japanese Yen)</option>
+            <option value="AUD">AUD (Australian Dollar)</option>
+            <option value="CAD">CAD (Canadian Dollar)</option>
+            <option value="CHF">CHF (Swiss Franc)</option>
+            <option value="CNY">CNY (Chinese Yuan)</option>
+            <option value="NZD">NZD (New Zealand Dollar)</option>
+            <option value="INR">INR (Indian Rupee)</option>
+        </optgroup>
+        <optgroup label="Cryptocurrencies">
+            <option value="BTC">BTC (Bitcoin)</option>
+            <option value="ETH">ETH (Ethereum)</option>
+            <option value="XRP">XRP (Ripple)</option>
+            <option value="USDT">USDT (Tether)</option>
+            <option value="LTC">LTC (Litecoin)</option>
+        </optgroup>
+    </select>
+    <label for="toCurrency">To:</label>
+    <select id="toCurrency">
+        <optgroup label="International Currencies">
+            <option value="MAD">MAD (Moroccan Dirham)</option>
+            <option value="USD">USD (United States Dollar)</option>
+            <option value="EUR">EUR (Euro)</option>
+            <option value="GBP">GBP (British Pound Sterling)</option>
+            <option value="JPY">JPY (Japanese Yen)</option>
+            <option value="AUD">AUD (Australian Dollar)</option>
+            <option value="CAD">CAD (Canadian Dollar)</option>
+            <option value="CHF">CHF (Swiss Franc)</option>
+            <option value="CNY">CNY (Chinese Yuan)</option>
+            <option value="NZD">NZD (New Zealand Dollar)</option>
+            <option value="INR">INR (Indian Rupee)</option>
+        </optgroup>
+        <optgroup label="Cryptocurrencies">
+            <option value="BTC">BTC (Bitcoin)</option>
+            <option value="ETH">ETH (Ethereum)</option>
+            <option value="XRP">XRP (Ripple)</option>
+            <option value="USDT">USDT (Tether)</option>
+            <option value="LTC">LTC (Litecoin)</option>
+        </optgroup>
+    </select>
+    <button onclick="convertCurrency()">Convert</button>
+    <h3 id="result"></h3>
+</div>
+
+<div class="footer">
+    <p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram logo">
+        Made by <a href="https://www.instagram.com/lv_ji0" target="_blank">@lv_ji0</a> and <a href="https://www.instagram.com/essaadywalid1/" target="_blank">@essaadywalid1</a>
+    </p>
+</div>
+
+<script>
+    function convertCurrency() {
+        var amount = document.getElementById("amount").value;
+        var fromCurrency = document.getElementById("fromCurrency").value;
+        var toCurrency = document.getElementById("toCurrency").value;
+        var result = document.getElementById("result");
+
+        var conversionRates = {
+            "MAD": 1,
+            "USD": 0.11,  // Assume 1 MAD = 0.11 USD
+            "EUR": 0.10,  // Assume 1 MAD = 0.10 EUR
+            "GBP": 0.08,  // Assume 1 MAD = 0.08 GBP
+            "JPY": 11.50, // Assume 1 MAD = 11.50 JPY
+            "AUD": 0.16,  // Assume 1 MAD = 0.16 AUD
+            "CAD": 0.14,  // Assume 1 MAD = 0.14 CAD
+            "CHF": 0.10,  // Assume 1 MAD = 0.10 CHF
+            "CNY": 0.72,  // Assume 1 MAD = 0.72 CNY
+            "NZD": 0.17,  // Assume 1 MAD = 0.17 NZD
+            "INR": 8.13,  // Assume 1 MAD = 8.13 INR
+            "BTC": 0.0000026, // Assume 1 MAD = 0.0000026 BTC
+            "ETH": 0.000036,  // Assume 1 MAD = 0.000036 ETH
+            "XRP": 0.21,      // Assume 1 MAD = 0.21 XRP
+            "USDT": 0.10,     // Assume 1 MAD = 0.10 USDT
+            "LTC": 0.0025     // Assume 1 MAD = 0.0025 LTC
+        };
+
+        if (fromCurrency === toCurrency) {
+            result.innerHTML = "You cannot convert the same currency.";
+            return;
+        }
+
+        var convertedAmount;
+        convertedAmount = (amount * conversionRates[toCurrency]) / conversionRates[fromCurrency];
+
+        result.innerHTML = amount + " " + fromCurrency + " = " + convertedAmount.toFixed(8) + " " + toCurrency;
+    }
+</script>
+
+</body>
+</html>
